@@ -8,13 +8,13 @@ import java.util.List;
  *
  * @author elshaar
  */
-public class Encrypter {
+public class Encoder {
     
     private final Cylinder cylinder;
     private String planText;
 
     
-    public Encrypter(Cylinder cylinder){
+    public Encoder(final Cylinder cylinder){
         this.cylinder = cylinder;
     }
     
@@ -26,7 +26,7 @@ public class Encrypter {
         return cylinder.getNumberOfRacks();
     }
     
-    public String encrypt(String planText, byte spin){
+    public String encrypt(final String planText, final byte spin){
         if(planText == null || "".equals(planText)) return null;
         this.planText = planText;
         //char cipherCharacter;
@@ -37,15 +37,15 @@ public class Encrypter {
         for (int i = 0; i < planText.length(); i++) 
             if(Character.isLowerCase(planText.charAt(i))) {
                 index = (byte) (iterator%cylinder.getNumberOfRacks());
-                racks[index].setPlanCharacter(planText.charAt(i));
+                racks[index].setCharacter(planText.charAt(i));
                 cipherText += racks[index].spin(spin);
                 iterator++;
             }
         return cipherText; 
     }
     
-    public char encrypt(char character, byte rackIndex, byte spin){
-        cylinder.getRacks()[rackIndex].setPlanCharacter(character);
+    public char encrypt(final char character, final byte rackIndex, final byte spin){
+        cylinder.getRacks()[rackIndex].setCharacter(character);
         return cylinder.getRacks()[rackIndex].spin(spin);
     }
         

@@ -22,7 +22,7 @@ public class Cylinder {
         fill();
     }
     
-    public Rack getRack(byte index){
+    public Rack getRack(final byte index){
         return racks[index];
     }
 

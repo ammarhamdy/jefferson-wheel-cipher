@@ -12,9 +12,9 @@ public class Rack {
     
     private final Character[] characters;
     private final byte[] indexes;
-    private Character planCharacter;
+    private Character character;
     private char encodedCharacter;
-    private byte indexOfPlanCharacter;
+    private byte indexOfCharacter;
      private final char none =  (char)(Double.NaN);
     
     public Rack(){
@@ -22,26 +22,26 @@ public class Rack {
         indexes = new byte[26];
         fill();
         encodedCharacter = none;
-        planCharacter = none;
-        indexOfPlanCharacter = (byte)none;
+        character = none;
+        indexOfCharacter = (byte)none;
     }
     
     /**
      * set rack to spin to this characters. 
-     * @param planCharacter
+     * @param character
      */
-    public void setPlanCharacter(char planCharacter){
-        planCharacter = Character.toLowerCase(planCharacter);
-        this.planCharacter = planCharacter;
-        indexOfPlanCharacter = indexes[planCharacter-'a'];
+    public void setCharacter(char character){
+        character = Character.toLowerCase(character);
+        this.character = character;
+        indexOfCharacter = indexes[character-'a'];
     }
     
     /**
-     * returns the character before the encryption. 
+     * returns the character before the encryption of decryption. 
      * @return 
      */
-    public char getPlanCharacter(){
-        return planCharacter;
+    public char getCharacter(){
+        return character;
     }
     
     /**
@@ -55,11 +55,11 @@ public class Rack {
     }
     
     /**
-     * return the index of plan character.
+     * return the index of character.
      * @return 
      */
-    public byte getIndexOfPlanCharacter(){
-        return indexOfPlanCharacter;
+    public byte getIndexOfCharacter(){
+        return indexOfCharacter;
     }
     
     /**
@@ -78,7 +78,7 @@ public class Rack {
      * @return 
      */
     public char spin(byte value){
-        value = (byte) (indexOfPlanCharacter+value);
+        value = (byte) (indexOfCharacter+value);
         value = mod(value, (byte)26);
         //if(value==indexOfPlanCharacter) return none; /*it is spin return to the same chararcter*/
         encodedCharacter = characters[value];
